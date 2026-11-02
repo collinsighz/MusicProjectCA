@@ -1,5 +1,4 @@
-
-package persistence.dto;
+package entities;
 
 import java.sql.Date;
 

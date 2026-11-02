@@ -1,5 +1,4 @@
-
-package persistence.dto;
+package entities;
 
 /**
  * Represents a genre in the music library.

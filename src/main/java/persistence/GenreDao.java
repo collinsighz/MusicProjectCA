@@ -1,8 +1,6 @@
+package persistence;
 
-package persistence.dao;
-
-import persistence.dto.Genre;
-import java.sql.SQLException;
+import entities.Genre;
 import java.util.List;
 
 /**
@@ -10,13 +8,12 @@ import java.util.List;
  *
  * @author Niharika Madan
  */
-public interface GenreDAO {
+public interface GenreDao {
 
     /**
      * Retrieves all genres from the database.
      *
      * @return a list of genres
-     * @throws SQLException if a database error occurs
      */
-    List<Genre> findAll() throws SQLException;
+    List<Genre> getAllGenres();
 }

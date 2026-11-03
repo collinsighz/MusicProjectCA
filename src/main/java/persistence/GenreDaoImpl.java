@@ -1,9 +1,6 @@
+package persistence;
 
-package persistence.dao.impl;
-
-import persistence.Connector;
-import persistence.dao.GenreDAO;
-import persistence.dto.Genre;
+import entities.Genre;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * MySQL implementation of GenreDAO.
+ * MySQL implementation of GenreDao.
  *
  * @author Niharika Madan
  */
-public class GenreDAOImpl implements GenreDAO {
+public class GenreDaoImpl implements GenreDao {
 
     private final Connector connector;
 
@@ -26,7 +23,7 @@ public class GenreDAOImpl implements GenreDAO {
      *
      * @param connector the database connector
      */
-    public GenreDAOImpl(Connector connector) {
+    public GenreDaoImpl(Connector connector) {
         this.connector = connector;
     }
 
@@ -34,30 +31,40 @@ public class GenreDAOImpl implements GenreDAO {
      * Retrieves all genres ordered by name.
      *
      * @return a list of genres
-     * @throws SQLException if a database error occurs
      */
     @Override
-    public List<Genre> findAll() throws SQLException {
+    public List<Genre> getAllGenres() {
+
         List<Genre> genres = new ArrayList<>();
+
         String sql = "SELECT genre_id, genre_name FROM genres ORDER BY genre_name";
 
         Connection connection = connector.getConnection();
 
         if (connection == null) {
-            throw new SQLException("Could not connect to the database.");
+            System.out.println("Could not connect to the database.");
+            return genres;
         }
 
         try (PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
+
                 Genre genre = new Genre(
                         resultSet.getInt("genre_id"),
                         resultSet.getString("genre_name")
                 );
+
                 genres.add(genre);
             }
+
+        } catch (SQLException e) {
+
+            System.out.println("Could not retrieve genres: " + e.getMessage());
+
         } finally {
+
             connector.freeConnection();
         }
 

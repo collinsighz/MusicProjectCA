@@ -1,9 +1,6 @@
+package persistence;
 
-package persistence.dao.impl;
-
-import persistence.Connector;
-import persistence.dao.AlbumDAO;
-import persistence.dto.Album;
+import entities.Album;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,11 +11,11 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * MySQL implementation of AlbumDAO.
+ * MySQL implementation of AlbumDao.
  *
  * @author Niharika Madan
  */
-public class AlbumDAOImpl implements AlbumDAO {
+public class AlbumDaoImpl implements AlbumDao {
 
     private final Connector connector;
 
@@ -27,7 +24,7 @@ public class AlbumDAOImpl implements AlbumDAO {
      *
      * @param connector the database connector
      */
-    public AlbumDAOImpl(Connector connector) {
+    public AlbumDaoImpl(Connector connector) {
         this.connector = connector;
     }
 
@@ -36,10 +33,9 @@ public class AlbumDAOImpl implements AlbumDAO {
      *
      * @param artistId the artist ID
      * @return a list of albums by the artist
-     * @throws SQLException if a database error occurs
      */
     @Override
-    public List<Album> findByArtistId(int artistId) throws SQLException {
+    public List<Album> getAlbumsByArtistId(int artistId) {
         List<Album> albums = new ArrayList<>();
 
         String sql = "SELECT album_id, artist_id, album_title, release_date, description "
@@ -48,7 +44,8 @@ public class AlbumDAOImpl implements AlbumDAO {
         Connection connection = connector.getConnection();
 
         if (connection == null) {
-            throw new SQLException("Could not connect to the database.");
+            System.out.println("Could not connect to the database.");
+            return albums;
         }
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -59,6 +56,10 @@ public class AlbumDAOImpl implements AlbumDAO {
                     albums.add(mapAlbum(resultSet));
                 }
             }
+
+        } catch (SQLException e) {
+            System.out.println("Could not retrieve albums: " + e.getMessage());
+
         } finally {
             connector.freeConnection();
         }
@@ -71,17 +72,17 @@ public class AlbumDAOImpl implements AlbumDAO {
      *
      * @param albumId the album ID
      * @return the album if found, otherwise empty
-     * @throws SQLException if a database error occurs
      */
     @Override
-    public Optional<Album> findById(int albumId) throws SQLException {
+    public Optional<Album> getAlbumById(int albumId) {
         String sql = "SELECT album_id, artist_id, album_title, release_date, description "
                 + "FROM albums WHERE album_id = ?";
 
         Connection connection = connector.getConnection();
 
         if (connection == null) {
-            throw new SQLException("Could not connect to the database.");
+            System.out.println("Could not connect to the database.");
+            return Optional.empty();
         }
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -93,6 +94,11 @@ public class AlbumDAOImpl implements AlbumDAO {
                 }
                 return Optional.empty();
             }
+
+        } catch (SQLException e) {
+            System.out.println("Could not retrieve album: " + e.getMessage());
+            return Optional.empty();
+
         } finally {
             connector.freeConnection();
         }

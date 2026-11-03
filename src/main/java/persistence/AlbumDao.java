@@ -1,8 +1,7 @@
+package persistence;
 
-package persistence.dao;
+import entities.Album;
 
-import persistence.dto.Album;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,23 +10,21 @@ import java.util.Optional;
  *
  * @author Niharika Madan
  */
-public interface AlbumDAO {
+public interface AlbumDao {
 
     /**
      * Retrieves albums belonging to a particular artist.
      *
      * @param artistId the artist ID
      * @return a list of albums by the artist
-     * @throws SQLException if a database error occurs
      */
-    List<Album> findByArtistId(int artistId) throws SQLException;
+    List<Album> getAlbumsByArtistId(int artistId);
 
     /**
      * Finds an album by its ID.
      *
      * @param albumId the album ID
      * @return the album if found, otherwise empty
-     * @throws SQLException if a database error occurs
      */
-    Optional<Album> findById(int albumId) throws SQLException;
+    Optional<Album> getAlbumById(int albumId);
 }

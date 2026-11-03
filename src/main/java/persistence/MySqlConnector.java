@@ -9,7 +9,7 @@ public class MySqlConnector implements Connector {
     private String driver = "com.mysql.cj.jdbc.Driver";
     private String url = "jdbc:mysql://127.0.0.1:3306/music_library";
     private String username = "root";
-    private String password = "";
+    private String password = System.getenv("MYSQL_PASSWORD");
 
     private Connection connection;
 

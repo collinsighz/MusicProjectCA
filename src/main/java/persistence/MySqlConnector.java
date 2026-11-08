@@ -13,6 +13,9 @@ public class MySqlConnector implements Connector {
 
     private Connection connection;
 
+    public MySqlConnector(String s) {
+    }
+
     @Override
     public Connection getConnection() {
 

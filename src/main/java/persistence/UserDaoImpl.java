@@ -8,9 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Implements database operations for user accounts using JDBC.
+ * Using JDBC, implement a database operation for user accounts.
  *
- * @author Collins
+ * @author Beni
  */
 public class UserDaoImpl implements UserDao {
 
@@ -19,8 +19,8 @@ public class UserDaoImpl implements UserDao {
     /**
      * Constructs a UserDaoImpl using the supplied database connector.
      *
-     * @param connector the connector used to access the database
-     * @author collins
+     * @param connector the connector that will be used to access the database
+     * @author Beni
      */
     public UserDaoImpl(Connector connector) {
         this.connector = connector;

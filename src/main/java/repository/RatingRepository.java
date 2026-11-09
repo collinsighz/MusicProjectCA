@@ -5,37 +5,30 @@ import entities.Song;
 
 import java.util.List;
 
-/**
- *  song rating operations.
- * @author Collins
- */
+///  Operation of rating songs
+/// @author Beni
 public interface RatingRepository {
 
-    /**
-     * Submits or updates a song rating.
-     * @param rating rating details
-     * @return true if successful
-     */
+    /// @param rating Submit or update a song's rating
+    /// @return true if operation works
     boolean rateSong(Rating rating);
 
-    /**
-     * Retrieves all ratings made by a user.
-     * @param userId user ID
-     * @return list of ratings
-     */
+    /// Retrieve every rating made by the user
+    /// @param userId the ID assigned to a user
+    /// @return true if successful
+    List<Rating> getUserRating(int userId);
+
+    /// Search and retrieve a user's rating by score
+    /// @param UserId the ID assigned to a user
+    /// @param rating the score rating
+    /// @return true if match is found
+    List<Rating> getUserRatingByScore(int UserId, int rating);
+
     List<Rating> getUserRatings(int userId);
 
-    /**
-     * Retrieves a user's ratings with a specific score.
-     * @param userId user ID
-     * @param rating rating score
-     * @return matching ratings
-     */
     List<Rating> getUserRatingsByScore(int userId, int rating);
 
-    /**
-     * Retrieves the highest-rated songs.
-     * @return list of highest-rated songs
-     */
+    /// Finds the highest-rated songs
+    /// @return List of songs with the highest rating
     List<Song> getHighestRatedSongs();
 }

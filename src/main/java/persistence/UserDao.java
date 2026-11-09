@@ -2,35 +2,27 @@ package persistence;
 
 import entities.User;
 
-/**
- * Defines database operations for user accounts.
- *
- * @author Collins
- */
+
 public interface UserDao {
 
     /**
-     * Adds a new user to the database.
-     * @param user the user to add
-     * @return true if the user was successfully added, otherwise false
-     * @author collins
-     */
-    boolean addUser(User user);
-
-    /**
-     * Finds a user using their username.
-     * @param username the username to search for
-     * @return the matching user, or null if no user is found
-     * @author collins
-     */
+     * * Search for a user using their username
+     * * @param username name of user to be added
+    * @return matching username, or null if match not found
+     * @author Beni
+    */
     User findUserByUsername(String username);
 
-    /**
-     * Updates the stored password hash for a user.
-     * @param userId t
-     * @param passwordHash
-     * @return true if the password was successfully updated, otherwise false
-     * @author collins
+
+    /// @param user
+    /// @return true if user added successfully, else false
+    /// @author Beni
+    boolean addUser(User user);
+
+    /** This method updates a stored password hash
+    * @param userId ID number assigned to a user
+    * @param passwordHash a user's hased password value
+    * @return true if password update sucessful, false otherwise
      */
     boolean updatePassword(int userId, String passwordHash);
 }

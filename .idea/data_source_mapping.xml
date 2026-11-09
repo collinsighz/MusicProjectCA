@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/src/main/java/persistence/RatingDaoImpl.java" value="526aba7b-1f5b-4598-9d01-bbe511be232b" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/sql/music_library.sql" value="526aba7b-1f5b-4598-9d01-bbe511be232b" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/sql/music_librarydataset.sql" value="526aba7b-1f5b-4598-9d01-bbe511be232b" />
+  </component>
+</project>

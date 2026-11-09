@@ -11,16 +11,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/// Implementation of a database operation for ratings
+/// @author Beni
 public class RatingDaoImpl implements RatingDao {
 
     private final Connector connector;
 
 
+    /// Using the supplied connector, create a RatingDao
+    /// @param connector Establishes connection to database
     public RatingDaoImpl(Connector connector) {
         this.connector = connector;
     }
 
 
+    /// Update or save a new song rating
+    /// @param rating Details of the song rating
+    /// @return true if rating save is successful
     @Override
     public boolean saveRating(Rating rating) {
 
@@ -54,6 +61,9 @@ public class RatingDaoImpl implements RatingDao {
     }
 
 
+    /// Finds all ratings made by a user
+    /// @param userId  The ID of the user
+    /// @return all ratings made by specified user
     @Override
     public List<Rating> findByUser(int userId) {
 
@@ -72,6 +82,8 @@ public class RatingDaoImpl implements RatingDao {
     }
 
 
+    /// Finds the highest-rated songs
+    /// @return all songs that have the highest rating
     @Override
     public List<Song> findHighestRatedSongs() {
 
@@ -120,6 +132,11 @@ public class RatingDaoImpl implements RatingDao {
     }
 
 
+    /// Execute a search for ratings
+    /// @param sql The SQL Query being used
+    /// @param userId ID of a user
+    /// @param rating rating score
+    /// @return all matching ratings if found, else return null
     private List<Rating> getRatings(String sql, int userId, Integer rating) {
 
         List<Rating> ratings = new ArrayList<>();

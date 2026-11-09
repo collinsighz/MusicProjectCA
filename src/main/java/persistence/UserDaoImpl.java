@@ -26,6 +26,7 @@ public class UserDaoImpl implements UserDao {
      *
      * @param user the user to add
      * @return true if one row was inserted, otherwise false
+     * @author Beni
      */
     @Override
     public boolean addUser(User user) {
@@ -64,6 +65,7 @@ public class UserDaoImpl implements UserDao {
 
     /// @param username The name that a user can be found by
     /// @return message if connection can't be established, else return null
+    /// @author Beni
     @Override
     public User findUserByUsername(String username) {
 
@@ -111,6 +113,7 @@ public class UserDaoImpl implements UserDao {
     /// @param userId
     /// @param passwordHash Displays the password in a hashed format for user security
     /// @return false if password could not be updated
+    /// @author Beni
     @Override
     public boolean updatePassword(int userId, String passwordHash) {
 

@@ -7,6 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Implements database operations for user accounts using JDBC.
+ *
+ * @author Collins
+ */
 public class UserDaoImpl implements UserDao {
 
     private final Connector connector;
@@ -14,8 +19,8 @@ public class UserDaoImpl implements UserDao {
     /**
      * Constructs a UserDaoImpl using the supplied database connector.
      *
-     * @param connector the connector that will be used to access the database
-     * @author Beni
+     * @param connector the connector used to access the database
+     * @author collins
      */
     public UserDaoImpl(Connector connector) {
         this.connector = connector;
@@ -26,7 +31,6 @@ public class UserDaoImpl implements UserDao {
      *
      * @param user the user to add
      * @return true if one row was inserted, otherwise false
-     * @author Beni
      */
     @Override
     public boolean addUser(User user) {
@@ -62,10 +66,13 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-
-    /// @param username The name that a user can be found by
-    /// @return message if connection can't be established, else return null
-    /// @author Beni
+    /**
+     * Finds a user by their username.
+     *
+     * @param username the username to search for
+     * @return the matching user, or null if no user is found
+     * @author collins
+     */
     @Override
     public User findUserByUsername(String username) {
 
@@ -109,11 +116,14 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
-
-    /// @param userId
-    /// @param passwordHash Displays the password in a hashed format for user security
-    /// @return false if password could not be updated
-    /// @author Beni
+    /**
+     * Updates a user's password hash in the database.
+     *
+     * @param userId the ID of the user
+     * @param passwordHash the new hashed password
+     * @return true if one row was updated, otherwise false
+     * @author collins
+     */
     @Override
     public boolean updatePassword(int userId, String passwordHash) {
 

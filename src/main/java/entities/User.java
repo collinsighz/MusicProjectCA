@@ -1,7 +1,7 @@
 package entities;
 
 /**
- * Represents a User in the database
+ * this records represents a sample User in the database
  *
  * @param userId
  * @param firstName
@@ -9,7 +9,7 @@ package entities;
  * @param username
  * @param email
  * @param passwordHash
- * @Author Collins
+ * @author Beni
  */
 
 public record User(

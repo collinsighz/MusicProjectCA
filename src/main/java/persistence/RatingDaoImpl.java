@@ -10,27 +10,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Implements database operations for ratings.
- * @author Collins
- */
+
+/// Implementation of a database operation for ratings
+/// @author Beni
 public class RatingDaoImpl implements RatingDao {
 
     private final Connector connector;
 
-    /**
-     * Creates a RatingDaoImpl using the supplied connector.
-     * @param connector database connector
-     */
+
+    /// Using the supplied connector, create a RatingDao
+    /// @param connector Establishes connection to database
     public RatingDaoImpl(Connector connector) {
         this.connector = connector;
     }
 
-    /**
-     * Adds or updates a song rating.
-     * @param rating rating details
-     * @return true if successful
-     */
+
+    /// Update or save a new song rating
+    /// @param rating Details of the song rating
+    /// @return true if rating save is successful
     @Override
     public boolean saveRating(Rating rating) {
 
@@ -63,11 +60,10 @@ public class RatingDaoImpl implements RatingDao {
         }
     }
 
-    /**
-     * Retrieves all ratings submitted by a user.
-     * @param userId user ID
-     * @return list of ratings
-     */
+
+    /// Finds all ratings made by a user
+    /// @param userId  The ID of the user
+    /// @return all ratings made by specified user
     @Override
     public List<Rating> findByUser(int userId) {
 
@@ -76,12 +72,7 @@ public class RatingDaoImpl implements RatingDao {
         return getRatings(sql, userId, null);
     }
 
-    /**
-     * Retrieves ratings submitted by a user with a specific score.
-     * @param userId user ID
-     * @param rating rating score
-     * @return matching ratings
-     */
+
     @Override
     public List<Rating> findByUserAndRating(int userId, int rating) {
 
@@ -90,11 +81,9 @@ public class RatingDaoImpl implements RatingDao {
         return getRatings(sql, userId, rating);
     }
 
-    /**
-     * Retrieves songs with the highest average rating.
-     * Includes ties.
-     * @return list of highest-rated songs
-     */
+
+    /// Finds the highest-rated songs
+    /// @return all songs that have the highest rating
     @Override
     public List<Song> findHighestRatedSongs() {
 
@@ -142,13 +131,12 @@ public class RatingDaoImpl implements RatingDao {
         return songs;
     }
 
-    /**
-     * Executes a rating search.
-     * @param sql SQL query
-     * @param userId user ID
-     * @param rating optional rating score
-     * @return matching ratings
-     */
+
+    /// Execute a search for ratings
+    /// @param sql The SQL Query being used
+    /// @param userId ID of a user
+    /// @param rating rating score
+    /// @return all matching ratings if found, else return null
     private List<Rating> getRatings(String sql, int userId, Integer rating) {
 
         List<Rating> ratings = new ArrayList<>();

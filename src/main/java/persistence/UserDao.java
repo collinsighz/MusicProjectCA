@@ -5,5 +5,7 @@ import entities.User;
 
 public interface UserDao {
    boolean addUser(User user);
-   User find
+    User findUserByUsername(String username);
+
+    boolean updatePassword(int userId, String passwordHash);
 }

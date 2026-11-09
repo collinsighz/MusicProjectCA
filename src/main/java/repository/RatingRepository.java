@@ -24,6 +24,10 @@ public interface RatingRepository {
     /// @return true if match is found
     List<Rating> getUserRatingByScore(int UserId, int rating);
 
+    List<Rating> getUserRatings(int userId);
+
+    List<Rating> getUserRatingsByScore(int userId, int rating);
+
     /// Finds the highest-rated songs
     /// @return List of songs with the highest rating
     List<Song> getHighestRatedSongs();

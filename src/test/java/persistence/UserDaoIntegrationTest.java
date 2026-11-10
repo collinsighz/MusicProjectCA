@@ -16,7 +16,7 @@ class UserDaoIntegrationTest {
     void findUserByUsernameReturnsNullWhenUserDoesNotExist() {
 
         User user = userDao.findUserByUsername(
-                "nonexistent_test_user_12345"
+                "nonexistent67"
         );
 
         assertNull(user);

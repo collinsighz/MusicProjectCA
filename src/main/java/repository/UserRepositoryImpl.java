@@ -4,12 +4,18 @@ import entities.User;
 import persistence.UserDao;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Implements user registration, login and password management.
  * @author Collins
  */
 public class UserRepositoryImpl implements UserRepository {
+
+    private static final Logger logger =
+            LoggerFactory.getLogger(UserRepositoryImpl.class);
+
 
     private final UserDao userDao;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -31,6 +37,7 @@ public class UserRepositoryImpl implements UserRepository {
      */
     @Override
     public boolean registerUser(User user, String password) {
+        logger.info("User successfully registered");
 
         if (user == null || password == null || !isValidPassword(password)) {
             return false;

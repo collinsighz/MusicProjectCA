@@ -1,3 +1,4 @@
+
 package persistence;
 
 import entities.Genre;
@@ -7,8 +8,16 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Integration tests for GenreDao.
+ *
+ * @author Niharika Madan
+ */
 class GenreDaoIntegrationTest {
 
+    /**
+     * Tests that all genres are successfully retrieved from the database.
+     */
     @Test
     void getAllGenresReturnsGenresFromDatabase() {
         MySqlConnector connector = new MySqlConnector();
@@ -17,5 +26,15 @@ class GenreDaoIntegrationTest {
         List<Genre> genres = genreDao.getAllGenres();
 
         assertNotNull(genres);
+        assertEquals(6, genres.size());
+
+        assertTrue(genres.stream()
+                .anyMatch(genre -> genre.genreName().equals("Pop")));
+
+        assertTrue(genres.stream()
+                .anyMatch(genre -> genre.genreName().equals("Rock")));
+
+        assertTrue(genres.stream()
+                .anyMatch(genre -> genre.genreName().equals("Jazz")));
     }
 }

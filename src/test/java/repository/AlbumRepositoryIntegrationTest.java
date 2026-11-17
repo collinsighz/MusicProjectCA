@@ -1,3 +1,4 @@
+
 package repository;
 
 import entities.Album;
@@ -8,7 +9,7 @@ import persistence.MySqlConnector;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Integration tests for AlbumRepository.
@@ -17,6 +18,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 class AlbumRepositoryIntegrationTest {
 
+    /**
+     * Tests that albums belonging to an artist are retrieved successfully.
+     */
     @Test
     void getAlbumsByArtistIdReturnsAList() {
         MySqlConnector connector = new MySqlConnector();
@@ -26,8 +30,14 @@ class AlbumRepositoryIntegrationTest {
         List<Album> albums = albumRepository.getAlbumsByArtistId(1);
 
         assertNotNull(albums);
+        assertEquals(1, albums.size());
+        assertEquals("1989", albums.get(0).albumTitle());
+        assertEquals(1, albums.get(0).artistId());
     }
 
+    /**
+     * Tests that an album can be retrieved using its ID.
+     */
     @Test
     void getAlbumByIdReturnsAnOptional() {
         MySqlConnector connector = new MySqlConnector();
@@ -36,6 +46,8 @@ class AlbumRepositoryIntegrationTest {
 
         Optional<Album> album = albumRepository.getAlbumById(1);
 
-        assertNotNull(album);
+        assertTrue(album.isPresent());
+        assertEquals("1989", album.get().albumTitle());
+        assertEquals(1, album.get().artistId());
     }
 }

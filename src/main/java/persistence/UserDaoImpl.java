@@ -7,14 +7,31 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Implements database operations for user accounts using JDBC.
+ *
+ * @author Collins
+ */
 public class UserDaoImpl implements UserDao {
 
     private final Connector connector;
 
+    /**
+     * Constructs a UserDaoImpl using the supplied database connector.
+     *
+     * @param connector the connector used to access the database
+     * @author collins
+     */
     public UserDaoImpl(Connector connector) {
         this.connector = connector;
     }
 
+    /**
+     * Adds a user to the database.
+     *
+     * @param user the user to add
+     * @return true if one row was inserted, otherwise false
+     */
     @Override
     public boolean addUser(User user) {
 
@@ -49,6 +66,13 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    /**
+     * Finds a user by their username.
+     *
+     * @param username the username to search for
+     * @return the matching user, or null if no user is found
+     * @author collins
+     */
     @Override
     public User findUserByUsername(String username) {
 
@@ -92,6 +116,14 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
+    /**
+     * Updates a user's password hash in the database.
+     *
+     * @param userId the ID of the user
+     * @param passwordHash the new hashed password
+     * @return true if one row was updated, otherwise false
+     * @author collins
+     */
     @Override
     public boolean updatePassword(int userId, String passwordHash) {
 
